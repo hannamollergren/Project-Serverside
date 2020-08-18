@@ -1,0 +1,23 @@
+.startpage-container{
+	text-align: center;
+	background-color: #D4F6ED;
+	width: 30%;
+	margin: auto;
+}
+h1{
+	font-weight: bold;
+	font-size: 2.3em;
+	padding: 2em 0 0;
+}
+.btn-allboats{
+	background-color: #4A6D8C;
+	color: white;
+	font-size: 1em;
+	margin: 2em 0 3em;
+}
+
+@media only screen and (max-width: 1150px){
+	.startpage-container{
+		width: 50%;
+	}
+}
