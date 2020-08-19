@@ -9,9 +9,8 @@ body{
 	color: #273858;
 }
 header{
-	position: relative;
+/* 	position: relative; */
 	height: 10em;
-	background-color: #273858;
 }
 button{
 	padding: 10px 25px;
