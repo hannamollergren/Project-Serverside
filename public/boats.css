@@ -1,0 +1,27 @@
+.page-title{
+	color: #D4F6ED;
+	margin-left: 1em;
+}
+.container{
+	margin: 3em 1em 0;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: 1.3em;
+	grid-row-gap: 3em;
+	z-index: 20;
+
+}
+#product-list{
+	padding: 1em;
+	/* margin: 0 1em 0; */
+	/* grid-column: 1/1; */
+	background: #D4F6ED;
+}
+#product-list li{
+	list-style: none;
+}
+
+/* #product-list span{
+	font-weight: 700;
+}
+ */

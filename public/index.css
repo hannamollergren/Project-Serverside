@@ -10,10 +10,6 @@
 	-moz-box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
 	box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
 }
-.header-container{ 
-	background-color: #273858;
-	height: 4em;
-}
 h1{
 	font-weight: 700;
 	font-size: 2.3em;
@@ -25,12 +21,30 @@ h1{
 	margin: 2em 0 5em;
 	border-radius: 5px;
 }
+#btn-allboats:hover{
+	cursor: pointer;
+	background-color: rgb(85, 129, 165);
+	transition: ease-out 0.4s;
+}
 .icon-startpage{
 	margin-top: 5em;
+	height: 10em;
 }
 
 @media only screen and (max-width: 1150px){
 	.startpage-container{
 		width: 50%;
+	}
+}
+@media only screen and (max-width: 600px){
+	.startpage-container{
+		width: 70%;
+	}
+	h1{
+		padding: 1em;
+		font-size: 1.8em;
+	}
+	.startpage-container{
+		top: -90;
 	}
 }

@@ -11,6 +11,11 @@ body{
 header{
 /* 	position: relative; */
 	height: 10em;
+	z-index: -10;
+}
+.header-container{ 
+	background-color: #273858;
+	height: 4em;
 }
 button{
 	padding: 10px 25px;
