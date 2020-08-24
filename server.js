@@ -7,15 +7,53 @@ const port = 1234; // Port number
 app.use(express.static(__dirname + '/public')) 
 
 // DATA
-let boat = {
+let boat = [
+	{
 	id: '',
 	model: 'Marin',
 	year: 2010,
-	price: 134000.00,
-	sail: 'Yes',
-	motor: 'No',
+	price: 134000.77,
+	is_sail: 'Yes',
+	has_motor: 'No',
 	image: ''
-}
+	},
+	{
+	id: '',
+	model: 'Aquador',
+	year: 2014,
+	price: 18888000.88,
+	is_sail: 'Yes',
+	has_motor: 'No',
+	image: ''
+	},
+	{
+	id: '',
+	model: 'Nimbus',
+	year: 2099,
+	price: 14555500.99,
+	is_sail: 'No',
+	has_motor: 'Yes',
+	image: ''
+	},
+	{
+	id: '',
+	model: 'Black Pearl',
+	year: 1890,
+	price: 18888000.89,
+	is_sail: 'Yes',
+	has_motor: 'No',
+	image: ''
+	},
+	{
+	id: '',
+	model: 'Buster',
+	year: 1990,
+	price: 155550.99,
+	is_sail: 'Yes',
+	has_motor: 'No',
+	image: ''
+	}
+];
 
 // REQUEST
 app.get('/', (req, res) => {
@@ -24,10 +62,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/boats/', (req, res) => {
-	// req.params
-	console.log('GET / boats.html')
-	/* res.send(boat) */
-	res.sendFile(__dirname + '/public/boats.html') //denna ska byta till denna filen och skriva ut datan
+	console.log('GET / boats')
+	res.send(boat)
+	/* res.sendFile(__dirname + '/public/boats.html') //denna ska byta till denna filen och skriva ut datan */
 })
 
 app.listen(port, () => {

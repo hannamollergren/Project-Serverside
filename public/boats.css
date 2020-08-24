@@ -9,19 +9,16 @@
 	column-gap: 1.3em;
 	grid-row-gap: 3em;
 	z-index: 20;
-
-}
-#product-list{
+} 
+#productList{
 	padding: 1em;
-	/* margin: 0 1em 0; */
-	/* grid-column: 1/1; */
-	background: #D4F6ED;
+	background-color: #D4F6ED;
 }
-#product-list li{
+li{
 	list-style: none;
 }
-
-/* #product-list span{
-	font-weight: 700;
+li span{
+	font-size: 1.5em;
+	font-family: 'Alice', 'Times New Roman', Times, serif;
 }
- */
+
