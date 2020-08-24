@@ -17,10 +17,21 @@ header{
 	background-color: #273858;
 	height: 4em;
 }
+footer{
+	margin-top: 3em;
+}
 
 button, a{
 	padding: 10px 25px;
 	border: none;
+	background-color: #4A6D8C;
+	color: white;
+	border-radius: 5px;
+}
+button:hover, a:hover{
+	cursor: pointer;
+	background-color: rgb(85, 129, 165);
+	transition: ease-out 0.4s;
 }
 a{
 	text-decoration: none;
