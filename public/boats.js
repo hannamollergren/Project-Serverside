@@ -4,26 +4,44 @@ window.addEventListener('load', async () => {
 	let inputModel = document.querySelector('#inputModel');
 	let inputYear = document.querySelector('#inputYear');
 	let inputPrice = document.querySelector('#inputPrice');
-	let inputIsSail = document.querySelector('#inputIsSail');
-	let inputHasMotor = document.querySelector('#inputHasMotor');
+	let inputIsSail = document.querySelectorAll('input[name="is_sail"]');
+	let inputHasMotor = document.querySelectorAll('input[name="has_motor"]');
 	let btnAddBoat = document.querySelector('.btn-addboat');
+
+	// change händelse - sätter värdet i en variabel. 
 	
+
+
+
 
 	btnAddBoat.addEventListener('click', async () => {
 		console.log('btnAddboat click')
+
+		for (var i = 0, length = inputIsSail.length; i < length; i++) {
+    		if (inputIsSail[i].checked) {
+        	break;
+   			}
+		}
+
+		for (var j = 0, length = inputHasMotor.length; j < length; j++) {
+    		if (inputHasMotor[j].checked) {
+        	break;
+   			}
+		}
+
+		console.log('is sail: ', inputIsSail[i].value)
 		input = {
 			id: '',
 			model: inputModel.value,
-			year: inputYear.value,
-			price: inputPrice.value,
-			is_sail: inputIsSail.value,
-			has_motor: inputHasMotor.value,
+			year: Number(inputYear.value), // omvandlar inputvärdet till number
+			price: Number(inputPrice.value),
+			is_sail: inputIsSail[i].value,
+			has_motor: inputHasMotor[j].value,
 			image: ''
 		}
 		console.log('input båt', input)
 
 		
-
 		const response = await fetch('/boat', {
             method: 'POST',
             headers: {
@@ -32,11 +50,12 @@ window.addEventListener('load', async () => {
             body: JSON.stringify(input)
         });
         const text = await response.text();
-        console.log(text);
+		console.log(text);
+		
+		// gör en ny get request - hämta alla båtar(lägg get request i funktion anropa här)?
 	})
 
-
-
+	// Lägg i en funktion
 	const response = await fetch('/boats', { method: 'GET' });
 	const object = await response.json();  
 

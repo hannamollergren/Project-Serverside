@@ -1,6 +1,8 @@
 .page-title{
 	color: #D4F6ED;
 	margin-left: 1em;
+	display: inline-block;
+	vertical-align: bottom;
 }
 .add{
 	padding: 0;
@@ -34,7 +36,10 @@ form{
 .addBoat-container p{
 	display: inline-block;
 	margin-left: 0.5em;
-	color: white
+	color: white;
+}
+label{
+	color: white;
 }
 input{
 	padding: 0.5em;
@@ -43,6 +48,19 @@ input{
 }
 input[type=text], input[type=number]{
 	margin: 0 1em 0 0;
+}
+#inputSearch{
+	background-color: transparent;
+	border-bottom: 2px solid white;
+	margin-left: 1em;
+	
+}
+#inputSearch::placeholder{
+	color: white;
+}
+.btn-addBoat{
+	padding: 0.6em 1em 0.6em;
+	margin-left: 0.7em;
 }
 @media only screen and (max-width: 1000px){
 	.container{
