@@ -4,13 +4,15 @@
   "description": "Boat shop",
   "main": "server.js",
   "scripts": {
-	"test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "Hanna Möllergren",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongod": "^2.0.0",
+    "mongodb": "^3.6.0"
   }
 }

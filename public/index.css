@@ -11,6 +11,39 @@
 	-moz-box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
 	box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
 }
+.product-container{
+	text-align: center;
+	background-color: #D4F6ED;
+	width: 30%;
+	height: 80%;
+	margin: auto;
+	z-index: 1;
+	position: relative;
+	top: -70;
+	-webkit-box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
+	-moz-box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
+	box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
+}
+.product-container{
+	padding: 4em;
+}
+.product-container li p{
+	display: block;
+	padding: 0 2em 0;
+}
+.btn-back{
+	padding: 1em 0 0;
+	margin-bottom: 3em;
+	background-color: transparent;
+	color: #273858;
+	border-radius: 0;
+	border-bottom: 1px solid #273858;
+}
+.btn-back:hover{
+	background-color: transparent;
+	border-bottom: 1px solid rgb(85, 129, 165);
+	transition: ease-out 0.3s;
+}
 h1{
 	font-weight: 700;
 	font-size: 2.3em;
@@ -23,14 +56,109 @@ h1{
 	margin-top: 5em;
 	height: 10em;
 }
+.page-title{
+	color: #D4F6ED;
+	margin-left: 1em;
+	display: inline-block;
+	vertical-align: bottom;
+}
+.add{
+	padding: 0;
+	font-size: 1em;
+}
+.container{
+	margin: 3em 1em 0;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: 1.3em;
+	grid-row-gap: 2em;
+	z-index: 20;
+	cursor: pointer;
+} 
+.productList{
+	padding: 1em;
+	background-color: #D4F6ED;
+}
+li{
+	list-style: none;
+}
+li span{
+	font-size: 1.5em;
+	font-family: 'Alice', 'Times New Roman', Times, serif;
+}
+form{
+	display: inline;
+}
+.addBoat-container{
+	margin: 1em;
+}
+.addBoat-container p{
+	display: inline-block;
+	margin-left: 0.5em;
+	color: white;
+}
+label{
+	color: white;
+}
+input{
+	padding: 0.5em;
+	border: none;
+	
+}
+input[type=text], input[type=number]{
+	margin: 0 1em 0 0;
+}
+#inputSearch{
+	background-color: transparent;
+	border-bottom: 2px solid white;
+	margin-left: 1em;
+	
+}
+#inputSearch::placeholder{
+	color: white;
+}
+.btn-addBoat{
+	padding: 0.6em 1em 0.6em;
+	margin-left: 0.7em;
+}
+.boats-container{
+	display: none;
+}
+.product-container{
+	display: none;
+}
 
+@media only screen and (max-width: 1000px){
+	.container{
+		grid-template-columns: repeat(3, 1fr);
+
+	} 
+}
+@media only screen and (max-width: 700px){
+	.container{
+		grid-template-columns: repeat(2, 1fr);
+
+	} 
+}
+@media only screen and (max-width: 450px){
+	.container{
+		grid-template-columns: repeat(1, 1fr);
+
+	} 
+}
 @media only screen and (max-width: 1150px){
 	.startpage-container{
+		width: 50%;
+	}
+	.product-container{
 		width: 50%;
 	}
 }
 @media only screen and (max-width: 600px){
 	.startpage-container{
+		width: 70%;
+	}
+	.product-container{
 		width: 70%;
 	}
 	h1{
