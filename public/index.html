@@ -28,8 +28,22 @@
 		<!-- ALLA BÅTAR -->
 		<div class="boats-container">
 		<h2 class="page-title">All boats </h2>
-		<!-- SÖK
-		SORTERA -->
+		<div class="search-container">
+			<input type="text" placeholder="Type something here" id="inputSearch">
+			<label for="cars">Choose a category</label>
+			<select id="categories" name="categories">
+				<option value="model">Model</option>
+				<option value="maxprice">Maxprice</option>
+				
+				<!-- <option value="is_sail">Is sail</option>
+				<option value="has_motor">Has motor</option>
+				<option value="madebefore">Made before</option>
+				<option value="madeafter">Made after</option> -->
+			</select>
+			<button id="btn-search">Search</button>
+		</div>
+		
+		
 			 <div class="addBoat-container">
 				<form>
 					<input type="text" placeholder="Model" id="inputModel"> 

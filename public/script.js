@@ -14,6 +14,9 @@ window.addEventListener('load', async () => {
 	let btnAddBoat = document.querySelector('.btn-addboat');
 	let btnGetBoats = document.querySelector('.btn-getBoats');
 	let btnBack = document.querySelector('.btn-back')
+	let inputSearch = document.querySelector('#inputSearch')
+	let searchCategory = document.querySelector('#categories'); 
+	let btnSearch = document.querySelector('#btn-search');
 
 	// DISPLAY
 	function displayBoats() {
@@ -61,6 +64,7 @@ window.addEventListener('load', async () => {
 			// GET BOAT
 			li.addEventListener('click', async () => {
 				displayProductInfo()
+				
 				
 				const response = await fetch('/boat?id=' + boat._id, { method: 'GET' });
 				console.log('get boat request response', response)
@@ -121,17 +125,48 @@ window.addEventListener('load', async () => {
 		console.log(text);
 	})
 
-		// TILLBAKA KNAPP
-		btnBack.addEventListener('click', async => {
-			if(productInfo === 'none'){
-				productInfo.style.display = 'block';
-				boatsContainer.style.display = "none";
-			}
-			else{
-				productInfo.style.display = "none";
-				boatsContainer.style.display = "block";
-			}
+	// TILLBAKA KNAPP
+	btnBack.addEventListener('click', async => {
+		if(productInfo === 'none'){
+			productInfo.style.display = 'block';
+			boatsContainer.style.display = "none";
+		}
+		else{
+			productInfo.style.display = "none";
+			boatsContainer.style.display = "block";
+		}
+	})
+
+	// SEARCH
+	// MÅSTE FIXA ATT DEN TAR BÅDA SMÅ OCH STORA BOKSTÄVER
+	let search = '';
+	let category = '';
+	btnSearch.addEventListener('click', async () => {
+		console.log('btnSearch click')
+		search= inputSearch.value;
+		category = searchCategory.value;
+		console.log('inputSearch', search )
+		console.log('searchCategory value', category )
+
+		// GET REQUEST
+		const response = await fetch('/search?' + category + '=' + search, { method: 'GET' });
+		console.log('search request response', response)
+		const object = await response.json(); 
+		console.log('Fetch seatch returned', object)
+
+		container.innerHTML = '';
+		object.forEach(boat => {
+			let li = document.createElement('li') 
+			li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}`
+			li.setAttribute("class", "productList");
+		
+			container.appendChild(li)
 		})
+
+	})
+
+	
+	
 
 	
 

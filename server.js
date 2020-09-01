@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express()
 const port = 1234; // Port number
 
-const { getAllBoats, addBoat, getBoat } = require('./database.js');
+const { getAllBoats, addBoat, getBoat, search } = require('./database.js');
 
 // MIDDLEWARE 
 app.use( (req, res, next) => {
@@ -32,9 +32,7 @@ app.get('/boats', (req, res) => {
 	});
 })
 
-
-
-// GET / boat?id=x - ha  samma /boar route som nedan???
+// GET / boat?id=x 
 app.get('/boat', (req, res) => {
 	getBoat(req.query.id, dataOrError => {
 		console.log('GET / boat', req.query.id)
@@ -42,8 +40,6 @@ app.get('/boat', (req, res) => {
 		res.send(dataOrError)
 	})
 }) 
-
-
 
 // POST /boat
 app.post('/boat?', (req, res) => {
@@ -59,8 +55,9 @@ app.post('/boat?', (req, res) => {
 // SEARCH
 app.get('/search', (req, res) => {
 	console.log('GET / SEARCH')
-	/* search()  */
-	res.send('Search route')
+	search(req.query, dataOrError => {
+		res.send(dataOrError)
+	})
 })
 
 // STARTAR WEBBSERVERN
