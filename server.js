@@ -1,9 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser');	
 const app = express()
-const port = 1345; // Port number
+const port = 1234; // Port number
 
-const { get, getAllBoats, addBoat } = require('./database.js');
+const { getAllBoats, addBoat, getBoat } = require('./database.js');
 
 // MIDDLEWARE 
 app.use( (req, res, next) => {
@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public'))
 app.use( bodyParser.urlencoded({ extended: true }) )
 app.use( bodyParser.json() )
 
-// REQUEST
+// ROUTES
 
 // GET / index.html
 app.get('/', (req, res) => {
@@ -32,17 +32,21 @@ app.get('/boats', (req, res) => {
 	});
 })
 
-// GET / boat?id=x 
+
+
+// GET / boat?id=x - ha  samma /boar route som nedan???
 app.get('/boat', (req, res) => {
-	let id = Number(req.query.id)
-	getAllBoats(param => {
-		console.log('GET / boat?id=x ', id)
-		res.send(param[id])
+	getBoat(req.query.id, dataOrError => {
+		console.log('GET / boat', req.query.id)
+		console.log('getboat server dataorerror', dataOrError)
+		res.send(dataOrError)
 	})
 }) 
 
+
+
 // POST /boat
-app.post('/boat', (req, res) => {
+app.post('/boat?', (req, res) => {
 	addBoat(req.body, param => {
 		res.send(param)
 	})
@@ -52,7 +56,14 @@ app.post('/boat', (req, res) => {
 
 // DELETE
 
+// SEARCH
+app.get('/search', (req, res) => {
+	console.log('GET / SEARCH')
+	/* search()  */
+	res.send('Search route')
+})
 
+// STARTAR WEBBSERVERN
 app.listen(port, () => {
 	console.log('Web server listening on port ' + port)
 })

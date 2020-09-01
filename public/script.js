@@ -16,12 +16,10 @@ window.addEventListener('load', async () => {
 	let btnBack = document.querySelector('.btn-back')
 
 	// DISPLAY
-	function displayElements() {
-		console.log('hello')
+	function displayBoats() {
 		if(startpageContainer === "none"){
 			startpageContainer.style.display = "block";
 			boatsContainer.style.display = "none";
-
 		}
 		else{
 			startpageContainer.style.display = "none";
@@ -33,7 +31,6 @@ window.addEventListener('load', async () => {
 		if(boatsContainer === 'none'){
 			boatsContainer.style.display = "block";
 			productInfo.style.display = 'none';
-
 		}
 		else{
 			boatsContainer.style.display = "none";
@@ -44,14 +41,14 @@ window.addEventListener('load', async () => {
 	// GET BOATS
 	btnGetBoats.addEventListener('click', async () => {
 	
-		displayElements();
+		displayBoats();
 	
 
 		console.log('Click hämta båtar')
 		const response = await fetch('/boats', { method: 'GET' });
 		const object = await response.json();  
 
-		console.log('Fetch returned:', object);
+		console.log('Fetch All boats returned:', object);
 
 		container.innerHTML = ""; // Tömmer sidan på båtobjekt när man trycker på knappen igen
 		object.forEach(boat => {
@@ -61,41 +58,30 @@ window.addEventListener('load', async () => {
 		
 			container.appendChild(li)
 
-			li.addEventListener('click', async => {
-				console.log('li click')
+			// GET BOAT
+			li.addEventListener('click', async () => {
 				displayProductInfo()
-
-				// GET BOAT????
-				let li = document.createElement('li') 
-			
-				li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}`
-				li.value.contentEditable="true";
-				// delete knapp
-				// edit knapp
-            	
-		
 				
+				const response = await fetch('/boat?id=' + boat._id, { method: 'GET' });
+				console.log('get boat request response', response)
+				const object = await response.text(); 
+				console.log('Fetch Get boat returned', object)
+
+				let li = document.createElement('li') 
+
+				li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus minus, quibusdam soluta labore consectetur architecto omnis delectus aspernatur atque minima doloremque, molestiae eveniet animi totam quae incidunt iusto adipisci ex.`
 				
 				productInfo.appendChild(li);
-				
+
+
+				// delete knapp
+				// edit knapp - x.contentEditable="true"; 
 				
 
 			})
 		}) 
 	})
-
-	// TILLBAKA KNAPP
-	btnBack.addEventListener('click', async => {
-		if(productInfo === 'none'){
-			productInfo.style.display = 'block';
-			boatsContainer.style.display = "none";
-		}
-		else{
-			productInfo.style.display = "none";
-			boatsContainer.style.display = "block";
-		}
-	})
-
+	
 	// ADD BOAT
 	btnAddBoat.addEventListener('click', async () => {
 		console.log('btnAddboat click')
@@ -112,10 +98,9 @@ window.addEventListener('load', async () => {
    			}
 		}
 
-		console.log('is sail: ', inputIsSail[i].value)
 		input = {
 			model: inputModel.value,
-			year: Number(inputYear.value), // omvandlar inputvärdet till number
+			year: Number(inputYear.value), 
 			price: Number(inputPrice.value),
 			is_sail: inputIsSail[i].value,
 			has_motor: inputHasMotor[j].value,
@@ -125,7 +110,7 @@ window.addEventListener('load', async () => {
 		message.innerHTML = 'Boat added successfully!';
 
 		
-		const response = await fetch('/boat', {
+		const response = await fetch('/boat?', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -135,6 +120,18 @@ window.addEventListener('load', async () => {
         const text = await response.text();
 		console.log(text);
 	})
+
+		// TILLBAKA KNAPP
+		btnBack.addEventListener('click', async => {
+			if(productInfo === 'none'){
+				productInfo.style.display = 'block';
+				boatsContainer.style.display = "none";
+			}
+			else{
+				productInfo.style.display = "none";
+				boatsContainer.style.display = "block";
+			}
+		})
 
 	
 

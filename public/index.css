@@ -11,6 +11,11 @@
 	-moz-box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
 	box-shadow: 10px 10px 44px -20px rgba(0,0,0,0.52);
 }
+.boats-container{
+	top: -70;
+	z-index: 1;
+	position: relative
+}
 .product-container{
 	text-align: center;
 	background-color: #D4F6ED;
