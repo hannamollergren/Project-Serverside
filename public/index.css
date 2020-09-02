@@ -136,6 +136,9 @@ input[type=text], input[type=number]{
 select{
 	padding: 0.3em;
 }
+.deleteButton{
+	margin: 2em 0 0;
+}
 
 @media only screen and (max-width: 1000px){
 	.container{

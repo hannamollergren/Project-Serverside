@@ -1,8 +1,15 @@
+KVAR ATT GÖRA:
+- jobba vidare med delete
+- jobba vidare med sök
+- edit
+- sortera
+- images
+- css add form, sök och sort
+
+
 https://www.boat24.com/en/
 
-// DATA
-let boats = [
-	{
+db.boats.insertMany([{
 		model: 'Marin',
 		year: 2010,
 		price: 134000.77,
@@ -169,9 +176,7 @@ let boats = [
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
-	}
-];
-
+	}])
 
 
 let col = 'boats';

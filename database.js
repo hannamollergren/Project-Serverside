@@ -43,6 +43,7 @@ function getAllBoats(callback) {
 function addBoat(requestBody, callback){
 	console.log('POST / addBoat')
 	const doc = requestBody;
+
 	MongoClient.connect(
 		url,
 		{ useUnifiedTopology: true },
@@ -79,11 +80,11 @@ function getBoat(id, callback){
 function search(query, callback){
 	const filter = {};
 
-	if( query.model ) {
-		filter.model = { "$regex": `.*${query.model}.*`};
+	if( query.word ) {
+		filter.model = { "$regex": `.*${query.word}.*`};
 	}
-	if( query.price ){
-		filter.price = { "$regex": {$lt:`.*${query.price}.*`}}
+	if( query.maxprice ){
+		filter.price = { $lt:`${query.maxprice}`} // FUNKAR EJ...
 	}
 	
 	MongoClient.connect(
@@ -92,7 +93,7 @@ function search(query, callback){
 		async (error, client) => {
 			if(error) {
 				callback('"Error!! Could not connect"');
-				return;  // exit the callback function
+				return;  
 			}
 			const col = client.db(databaseName).collection(collectionName);
 			try {
@@ -111,9 +112,44 @@ function search(query, callback){
 	)
 }
 
-// PUT
-
 // DELETE
+// TAR INTE BORT RÄTT BÅÅÅT??!
+function deleteBoat(requestBody, callback){
+	console.log('DELETE / deleteBoat')
+	const doc = requestBody;
+
+	MongoClient.connect(
+		url,
+		{ useUnifiedTopology: true },
+		async (error, client) => {
+			if(error) {
+				callback('"Error! Could not connect!"');
+				return; 
+			}
+			const col = client.db(databaseName).collection(collectionName);
+			try {
+				const result = await col.deleteOne(doc);
+				callback({
+					result: result.result,
+					ops: result.ops
+				})
+
+			} catch(error) {
+				callback('"Error! Bad query."');
+
+			} finally {
+				client.close();
+			}
+		}
+	)
+
+}
+
+// PUT
+function editBoat(){
+	console.log('PUT / editBoat')
+	
+}
 
 
 
@@ -121,5 +157,5 @@ function search(query, callback){
 
 
 module.exports = {
-	get, getAllBoats, addBoat, getBoat, search
+	get, getAllBoats, addBoat, getBoat, search, deleteBoat, editBoat
 }

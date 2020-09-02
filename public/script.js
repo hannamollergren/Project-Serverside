@@ -18,35 +18,10 @@ window.addEventListener('load', async () => {
 	let searchCategory = document.querySelector('#categories'); 
 	let btnSearch = document.querySelector('#btn-search');
 
-	// DISPLAY
-	function displayBoats() {
-		if(startpageContainer === "none"){
-			startpageContainer.style.display = "block";
-			boatsContainer.style.display = "none";
-		}
-		else{
-			startpageContainer.style.display = "none";
-			boatsContainer.style.display = "block";
-		}
-		
-	}
-	function displayProductInfo() {
-		if(boatsContainer === 'none'){
-			boatsContainer.style.display = "block";
-			productInfo.style.display = 'none';
-		}
-		else{
-			boatsContainer.style.display = "none";
-			productInfo.style.display = "block";
-		}
-	}
 	
 	// GET BOATS
 	btnGetBoats.addEventListener('click', async () => {
-	
 		displayBoats();
-	
-
 		console.log('Click hämta båtar')
 		const response = await fetch('/boats', { method: 'GET' });
 		const object = await response.json();  
@@ -74,11 +49,28 @@ window.addEventListener('load', async () => {
 				let li = document.createElement('li') 
 
 				li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus minus, quibusdam soluta labore consectetur architecto omnis delectus aspernatur atque minima doloremque, molestiae eveniet animi totam quae incidunt iusto adipisci ex.`
+
+				// DELETE BOAT
+				let btnDelete = document.createElement('button')
+				btnDelete.setAttribute("class", "deleteButton");
+				btnDelete.innerHTML = 'Delete';
+				btnDelete.addEventListener('click', async () => {
+
+					fromProductToBoats();
+					// UPPDATERA BÅT LISTA
+
+					console.log('btnButton click')
+
+					// DELETE REQUEST
+					const response = await fetch('/delete?id=' + boat._id, { method: 'DELETE' });
+					console.log('delete request response', response)
+					const object = await response.json(); 
+					console.log('Fetch delete returned', object);
+				})
 				
 				productInfo.appendChild(li);
+				productInfo.appendChild(btnDelete)
 
-
-				// delete knapp
 				// edit knapp - x.contentEditable="true"; 
 				
 
@@ -126,15 +118,8 @@ window.addEventListener('load', async () => {
 	})
 
 	// TILLBAKA KNAPP
-	btnBack.addEventListener('click', async => {
-		if(productInfo === 'none'){
-			productInfo.style.display = 'block';
-			boatsContainer.style.display = "none";
-		}
-		else{
-			productInfo.style.display = "none";
-			boatsContainer.style.display = "block";
-		}
+	btnBack.addEventListener('click', async () => {
+		fromProductToBoats();
 	})
 
 	// SEARCH
@@ -143,13 +128,24 @@ window.addEventListener('load', async () => {
 	let category = '';
 	btnSearch.addEventListener('click', async () => {
 		console.log('btnSearch click')
-		search= inputSearch.value;
-		category = searchCategory.value;
-		console.log('inputSearch', search )
-		console.log('searchCategory value', category )
+		let query = '';
+		
+		if (searchCategory.value === 'maxprice'){
+			search = Number(inputSearch.value)
+			category = searchCategory.value;
+			query = 'maxprice';
+		}
+		else{
+			search= inputSearch.value;
+			category = searchCategory.value;
+			query = 'word';
+		}
+		
+
+		
 
 		// GET REQUEST
-		const response = await fetch('/search?' + category + '=' + search, { method: 'GET' });
+		const response = await fetch('/search?' + query + '=' + search, { method: 'GET' }); // word ist för cat
 		console.log('search request response', response)
 		const object = await response.json(); 
 		console.log('Fetch seatch returned', object)
@@ -165,6 +161,38 @@ window.addEventListener('load', async () => {
 
 	})
 
+	// DISPLAY
+	function displayBoats() {
+		if(startpageContainer === "none"){
+			startpageContainer.style.display = "block";
+			boatsContainer.style.display = "none";
+		}
+		else{
+			startpageContainer.style.display = "none";
+			boatsContainer.style.display = "block";
+		}
+		
+	}
+	function displayProductInfo() {
+		if(boatsContainer === 'none'){
+			boatsContainer.style.display = "block";
+			productInfo.style.display = 'none';
+		}
+		else{
+			boatsContainer.style.display = "none";
+			productInfo.style.display = "block";
+		}
+	}
+	function fromProductToBoats() {
+		if(productInfo === 'none'){
+			productInfo.style.display = 'block';
+			boatsContainer.style.display = "none";
+		}
+		else{
+			productInfo.style.display = "none";
+			boatsContainer.style.display = "block";
+		}
+	}
 	
 	
 
