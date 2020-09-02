@@ -80,12 +80,22 @@ function getBoat(id, callback){
 function search(query, callback){
 	const filter = {};
 
-	if( query.word ) {
+	if( query.word ){
 		filter.model = { "$regex": `.*${query.word}.*`};
 	}
 	if( query.maxprice ){
-		filter.price = { $lt:`${query.maxprice}`} // FUNKAR EJ...
+		let price = Number(query.maxprice);
+		filter.price = {$lt: price}
 	}
+	if( query.madebefore ){
+		let year = Number(query.madebefore);
+		filter.year = {$lt: year}
+	}
+	if( query.madeafter ){
+		let year = Number(query.madeafter);
+		filter.year = {$gt: year}
+	}
+
 	
 	MongoClient.connect(
 		url,

@@ -123,27 +123,27 @@ window.addEventListener('load', async () => {
 	})
 
 	// SEARCH
-	// MÅSTE FIXA ATT DEN TAR BÅDA SMÅ OCH STORA BOKSTÄVER
-	let search = '';
-	let category = '';
+	// MÅSTE FIXA ATT DEN TAR BÅDA SMÅ OCH STORA BOKSTÄVER 
 	btnSearch.addEventListener('click', async () => {
 		console.log('btnSearch click')
+		let search = '';
 		let query = '';
 		
 		if (searchCategory.value === 'maxprice'){
-			search = Number(inputSearch.value)
-			category = searchCategory.value;
 			query = 'maxprice';
 		}
+		else if (searchCategory.value === 'madebefore'){
+			query = 'madebefore';
+		}
+		else if (searchCategory.value === 'madeafter'){
+			query = 'madeafter';
+		}
 		else{
-			search= inputSearch.value;
-			category = searchCategory.value;
 			query = 'word';
 		}
 		
-
+		search = inputSearch.value;
 		
-
 		// GET REQUEST
 		const response = await fetch('/search?' + query + '=' + search, { method: 'GET' }); // word ist för cat
 		console.log('search request response', response)
