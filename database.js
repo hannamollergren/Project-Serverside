@@ -81,7 +81,7 @@ function search(query, callback){
 	const filter = {};
 
 	if( query.word ){
-		filter.model = { "$regex": `.*${query.word}.*`};
+		filter.model={ "$regex": `.*${query.word}.*`,"$options":"i"};
 	}
 	if( query.maxprice ){
 		let price = Number(query.maxprice);
@@ -122,10 +122,10 @@ function search(query, callback){
 }
 
 // DELETE
-function deleteBoat(requestBody, callback){
+function deleteBoat(param, callback){
 	console.log('DELETE / deleteBoat')
-	const doc = {_id: new ObjectID(requestBody._id)};
-	console.log('requestBody delete', requestBody)
+	const doc = {_id: new ObjectID(param._id)};
+	console.log('param delete', param)
 
 	MongoClient.connect(
 		url,

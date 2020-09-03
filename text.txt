@@ -1,12 +1,18 @@
 KVAR ATT GÖRA:
-- jobba vidare med delete
+
+level ups:
+- sortera
 - sök - is sail och has motor
 - edit
-- sortera
 - images
+- återställa databasen (tar bort allt och lägger in alla dokument igen)
+
+
 
 db.boats.find({_id: ObjectId("5f508721748b22160fb93b2a")})
+db.boats.find({model:{$regex:/^"Sea"/i}})
 
+db.boats.find({model: {$regex: /^yam/i}}) // detta ska funka
 
 https://www.boat24.com/en/
 
