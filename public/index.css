@@ -92,6 +92,12 @@ li span{
 	font-size: 1.5em;
 	font-family: 'Alice', 'Times New Roman', Times, serif;
 }
+li img{
+	height: 200px;
+	width: 300px;
+	margin-top: 1em;
+
+}
 form{
 	display: inline;
 }

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express()
 const port = 1234; // Port number
 
-const { getAllBoats, addBoat, getBoat, search, deleteBoat, editBoat } = require('./database.js');
+const { getAllBoats, addBoat, getBoat, search, deleteBoat } = require('./database.js');
 
 // MIDDLEWARE 
 app.use( (req, res, next) => {
@@ -65,12 +65,6 @@ app.delete('/boat/:_id', (req, res) => {
 	})
 })
 
-// PUT
-app.put('/edit', (req, res) =>{
-	console.log('PUT / edit')
-	editBoat()
-	res.send('Edit route')
-})
 
 
 // STARTAR WEBBSERVERN

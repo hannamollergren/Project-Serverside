@@ -1,28 +1,15 @@
-KVAR ATT GÖRA:
-
-level ups:
-- sortera
-- sök - is sail och has motor
-- edit
-- images
-- återställa databasen (tar bort allt och lägger in alla dokument igen)
-
-
-
-db.boats.find({_id: ObjectId("5f508721748b22160fb93b2a")})
-db.boats.find({model:{$regex:/^"Sea"/i}})
-
-db.boats.find({model: {$regex: /^yam/i}}) // detta ska funka
-
-https://www.boat24.com/en/
-
+Här är min inlämning i kursen Serverside programmering.
+Länk till repot på GitHub: https://github.com/hannamollergren/Project-Serverside
+Jag har implementerat följande level ups: 1, 3, 5, 7, (8).
+Webbservern är publicerad här: (URL)
+db.boats.deleteMany({})
 db.boats.insertMany([{
 		model: 'Marin',
 		year: 2010,
 		price: 13400,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/337263-2717bda19872fe230cd4e4f9c9f99a1d.jpg"
 	},
 	{
 		model: 'Aquador',
@@ -30,7 +17,7 @@ db.boats.insertMany([{
 		price: 1888800,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://api.boatvertizer.com/fotos/catalog/245097-1-large.jpg"
 	},
 	{
 		model: 'Nimbus',
@@ -38,7 +25,7 @@ db.boats.insertMany([{
 		price: 14000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/440872-c5e75c1311fa4908ce1056c37beec743.jpg"
 	},
 	{
 		model: 'Black Pearl',
@@ -46,7 +33,7 @@ db.boats.insertMany([{
 		price: 18000,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://www.hoom.se/wp-content/uploads/2019/07/Black_Pearl_01.jpg"
 	},
 	{	
 		model: 'Buster',
@@ -54,7 +41,7 @@ db.boats.insertMany([{
 		price: 155550,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/427900-502b6339d8d00547c22ccaf3432a81bc.jpg"
 	},
 	{
 		model: 'Buster X1880',
@@ -62,7 +49,7 @@ db.boats.insertMany([{
 		price: 230000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/104379-3dfc6ef6504fcdbf643627adc5f864eb.jpg"
 	},
 	{
 		model: 'Sea Ray',
@@ -70,7 +57,7 @@ db.boats.insertMany([{
 		price: 1000000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/437250-25617c8d36dc0120972e096b0a03f632.jpg"
 	},
 	{
 		model: 'Princess',
@@ -78,7 +65,7 @@ db.boats.insertMany([{
 		price: 17888999,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/447636-6a095b381441190a16ffb28416c42ce3.jpg"
 	},
 	{
 		model: 'X900S',
@@ -86,7 +73,7 @@ db.boats.insertMany([{
 		price: 300000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/412275-0d344d7620436610e6e714ac0beeb524.jpg"
 	},
 	{
 		model: 'EOS ',
@@ -94,7 +81,7 @@ db.boats.insertMany([{
 		price: 296600,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/396956-e6c900df061f51f07bc16803ec819cda.jpg"
 	},
 	{
 		model: 'Nimbus',
@@ -102,7 +89,7 @@ db.boats.insertMany([{
 		price: 456600,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/446693-7799cea42346b56bb20f85cce2cd92ac.jpg"
 	},
 	{
 		model: 'Star craft',
@@ -110,15 +97,15 @@ db.boats.insertMany([{
 		price: 123456,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://d196r9c7cfkkpm.cloudfront.net/fotos/medium/446109-a3a0c4f1245aa44fd87aec129a284402.jpg"
 	},
 	{
-		model: 'Maltese Falcon ',
+		model: 'Maltese Falcon',
 		year: 2019,
 		price: 19000,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://image.yachtcharterfleet.com/charter-MALTESE-FALCON/MALTESE-FALCON-1.jpg?image_id=600282&k=5dac&w=987&h=477&q=95&o=wc"
 	},
 	{
 		model: 'Yamaha',
@@ -126,15 +113,15 @@ db.boats.insertMany([{
 		price: 160000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2018/FMT8/2018-Yamaha-FMT8-EU-NA-Action-002-02.jpg"
 	},
 	{
-		model: 'EOS ',
-		year: 1997,
-		price: 296600,
+		model: 'EOS 3000 ',
+		year: 1995,
+		price: 17600,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://najad.se/wp-content/uploads/2018/01/009a4400_2000x1269-1702x1080.jpg"
 	},
 	{	
 		model: 'RMS Titanic ',
@@ -142,7 +129,7 @@ db.boats.insertMany([{
 		price: 290000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://i.ytimg.com/vi/pzu_KXTLS7I/maxresdefault.jpg"
 	},
 	{
 		model: 'HMS Beagle',
@@ -150,7 +137,7 @@ db.boats.insertMany([{
 		price: 1450000,
 		is_sail: 'Yes',
 		has_motor: 'No',
-		image: ''
+		image: "https://upload.wikimedia.org/wikipedia/commons/5/54/HMSBeagle.jpg"
 	},
 	{
 		model: 'USS Arizona',
@@ -158,7 +145,7 @@ db.boats.insertMany([{
 		price: 1890000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://1.bp.blogspot.com/-HZkdhufqKK8/VT_vPzV3URI/AAAAAAAAD8Y/Cud-97NVQZ4/s1600/arizona.jpg"
 	},
 	{
 		model: 'Princess',
@@ -166,7 +153,7 @@ db.boats.insertMany([{
 		price: 3900000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://princessyachts.se/wp-content/uploads/2020/07/Princess-S66_on-the-Swedish-west-coast_by-Princess-Yachts-West-Sweden-103.jpg"
 	},
 	{
 		model: 'Sea Ray',
@@ -174,7 +161,7 @@ db.boats.insertMany([{
 		price: 1780000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://media.tacdn.com/media/attractions-splice-spp-674x446/07/a6/fa/a1.jpg"
 	},
 	{
 		model: 'Humber 40',
@@ -182,15 +169,6 @@ db.boats.insertMany([{
 		price: 1100000,
 		is_sail: 'No',
 		has_motor: 'Yes',
-		image: ''
+		image: "https://www.humberribs.co.uk/images/feature5.jpg"
 	}])
-
-
-let col = 'boats';
-let db = 'boatDB';
-
-db.boats.insertOne({objekt})
-
-ato one dark theme (davids färger)
-
 

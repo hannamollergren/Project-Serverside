@@ -125,7 +125,6 @@ function search(query, callback){
 function deleteBoat(param, callback){
 	console.log('DELETE / deleteBoat')
 	const doc = {_id: new ObjectID(param._id)};
-	console.log('param delete', param)
 
 	MongoClient.connect(
 		url,
@@ -154,17 +153,6 @@ function deleteBoat(param, callback){
 
 }
 
-// PUT
-function editBoat(){
-	console.log('PUT / editBoat')
-	
-}
-
-
-
-
-
-
 module.exports = {
-	get, getAllBoats, addBoat, getBoat, search, deleteBoat, editBoat
+	get, getAllBoats, addBoat, getBoat, search, deleteBoat
 }

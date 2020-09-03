@@ -11,30 +11,37 @@ window.addEventListener('load', async () => {
 	let inputPrice = document.querySelector('#inputPrice');
 	let inputIsSail = document.querySelectorAll('input[name="is_sail"]');
 	let inputHasMotor = document.querySelectorAll('input[name="has_motor"]');
+	let imgURL = document.querySelectorAll('#imgURL');
 	let btnAddBoat = document.querySelector('.btn-addboat');
 	let btnGetBoats = document.querySelector('.btn-getBoats');
 	let btnBack = document.querySelector('.btn-back')
 	let inputSearch = document.querySelector('#inputSearch')
 	let searchCategory = document.querySelector('#categories'); 
 	let btnSearch = document.querySelector('#btn-search');
+	let btnReset = document.querySelector('.reset')
 
 	
 	// GET BOATS
 	btnGetBoats.addEventListener('click', async () => {
 		displayBoats();
-		console.log('Click hämta båtar')
 		const response = await fetch('/boats', { method: 'GET' });
 		const object = await response.json();  
-
-		console.log('Fetch All boats returned:', object);
-
 		container.innerHTML = ""; 
-		
+
 		object.forEach(boat => {
 			let li = document.createElement('li') 
 			li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}`
 			li.setAttribute("class", "productList");
-		
+
+			let img = document.createElement('img'); 
+			img.src = boat.image;
+			
+			if(boat.image === '')
+			{
+			img.src = 'https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-4.jpg';
+			}
+           
+			li.appendChild(img)
 			container.appendChild(li)
 
 			// GET BOAT
@@ -43,9 +50,7 @@ window.addEventListener('load', async () => {
 				
 				
 				const response = await fetch('/boat/' + boat._id, { method: 'GET' });
-				console.log('get boat request response', response)
 				const object = await response.text(); 
-				console.log('Fetch Get boat returned', object)
 
 				let li = document.createElement('li') 
 
@@ -58,30 +63,20 @@ window.addEventListener('load', async () => {
 				btnDelete.addEventListener('click', async () => {
 
 					fromProductToBoats();
-					// UPPDATERA BÅT LISTA
-
-					console.log('btnButton click')
 
 					// DELETE REQUEST
 					const response = await fetch('/boat/' + boat._id, { method: 'DELETE' });
-					console.log('delete request response', response)
 					const object = await response.json(); 
-					console.log('Fetch delete returned', object);
 				})
 				
 				productInfo.appendChild(li);
 				productInfo.appendChild(btnDelete)
-
-				// edit knapp - x.contentEditable="true"; 
-				
-
 			})
 		}) 
 	})
 	
 	// ADD BOAT
 	btnAddBoat.addEventListener('click', async () => {
-		console.log('btnAddboat click')
 
 		for (var i = 0, length = inputIsSail.length; i < length; i++) {
     		if (inputIsSail[i].checked) {
@@ -101,11 +96,9 @@ window.addEventListener('load', async () => {
 			price: Number(inputPrice.value),
 			is_sail: inputIsSail[i].value,
 			has_motor: inputHasMotor[j].value,
-			image: ''
+			image: imgURL[0].value
 		}
-		console.log('input båt', input)
 		message.innerHTML = 'Boat added successfully!';
-
 		
 		const response = await fetch('/boat?', {
             method: 'POST',
@@ -115,7 +108,6 @@ window.addEventListener('load', async () => {
             body: JSON.stringify(input)
         });
         const text = await response.text();
-		console.log(text);
 	})
 
 	// TILLBAKA KNAPP
@@ -126,7 +118,6 @@ window.addEventListener('load', async () => {
 	// SEARCH
 	// MÅSTE FIXA ATT DEN TAR BÅDA SMÅ OCH STORA BOKSTÄVER 
 	btnSearch.addEventListener('click', async () => {
-		console.log('btnSearch click')
 		let search = '';
 		let query = '';
 		
@@ -146,11 +137,8 @@ window.addEventListener('load', async () => {
 		search = inputSearch.value;
 		
 		// GET REQUEST
-		const response = await fetch('/search?' + query + '=' + search, { method: 'GET' }); // word ist för cat
-		console.log('search request response', response)
+		const response = await fetch('/search?' + query + '=' + search, { method: 'GET' }); 
 		const object = await response.json(); 
-		console.log('Fetch seatch returned', object)
-
 		container.innerHTML = '';
 		object.forEach(boat => {
 			let li = document.createElement('li') 
@@ -193,9 +181,7 @@ window.addEventListener('load', async () => {
 			boatsContainer.style.display = "block";
 		}
 	}
-	
-	
 
-	
+
 
 }); // load
