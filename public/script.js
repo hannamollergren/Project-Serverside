@@ -28,7 +28,8 @@ window.addEventListener('load', async () => {
 
 		console.log('Fetch All boats returned:', object);
 
-		container.innerHTML = ""; // Tömmer sidan på båtobjekt när man trycker på knappen igen
+		container.innerHTML = ""; 
+		
 		object.forEach(boat => {
 			let li = document.createElement('li') 
 			li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}`
@@ -41,7 +42,7 @@ window.addEventListener('load', async () => {
 				displayProductInfo()
 				
 				
-				const response = await fetch('/boat?id=' + boat._id, { method: 'GET' });
+				const response = await fetch('/boat/' + boat._id, { method: 'GET' });
 				console.log('get boat request response', response)
 				const object = await response.text(); 
 				console.log('Fetch Get boat returned', object)

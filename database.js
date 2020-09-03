@@ -73,7 +73,7 @@ function addBoat(requestBody, callback){
 // GET BOAT
 function getBoat(id, callback){
 	console.log('GET / getBoat')
-	get({_id: new ObjectID(id)}, array => callback(array[0]))
+	get({_id: new ObjectID(id._id)}, array => callback(array[0]))
 }
 
 // SEARCH
@@ -122,7 +122,6 @@ function search(query, callback){
 }
 
 // DELETE
-// TAR INTE BORT RÄTT BÅÅÅT??!
 function deleteBoat(requestBody, callback){
 	console.log('DELETE / deleteBoat')
 	const doc = {_id: new ObjectID(requestBody._id)};

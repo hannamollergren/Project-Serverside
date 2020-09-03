@@ -32,12 +32,12 @@ app.get('/boats', (req, res) => {
 	});
 })
 
-// GET / boat?id=x 
-app.get('/boat', (req, res) => {
-	getBoat(req.query.id, dataOrError => {
-		console.log('GET / boat', req.query.id)
-		console.log('getboat server dataorerror', dataOrError)
-		res.send(dataOrError)
+// GET / boat/:_id
+app.get('/boat/:_id', (req, res) => {
+	getBoat(req.params, param => {
+		console.log('GET / boat', req.params)
+		console.log('getboat server dataorerror', param)
+		res.send(param)
 	})
 }) 
 
