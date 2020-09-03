@@ -41,7 +41,7 @@ app.get('/boat', (req, res) => {
 	})
 }) 
 
-// POST /boat
+// POST 
 app.post('/boat?', (req, res) => {
 	addBoat(req.body, param => {
 		res.send(param)
@@ -56,11 +56,11 @@ app.get('/search', (req, res) => {
 	})
 })
 
-
 // DELETE
-app.delete('/delete', (req, res) => {
-	console.log('DELETE / delete')
-	deleteBoat(req.body, param => {
+app.delete('/boat/:_id', (req, res) => {
+	console.log('DELETE / boat', req.params)
+	deleteBoat(req.params, param => {
+		console.log('deleteBoat param:', param)
 		res.send(param)
 	})
 })

@@ -62,7 +62,7 @@ window.addEventListener('load', async () => {
 					console.log('btnButton click')
 
 					// DELETE REQUEST
-					const response = await fetch('/delete?id=' + boat._id, { method: 'DELETE' });
+					const response = await fetch('/boat/' + boat._id, { method: 'DELETE' });
 					console.log('delete request response', response)
 					const object = await response.json(); 
 					console.log('Fetch delete returned', object);
@@ -155,7 +155,6 @@ window.addEventListener('load', async () => {
 			let li = document.createElement('li') 
 			li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}`
 			li.setAttribute("class", "productList");
-		
 			container.appendChild(li)
 		})
 

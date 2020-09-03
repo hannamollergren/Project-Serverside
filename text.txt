@@ -1,10 +1,11 @@
 KVAR ATT GÖRA:
 - jobba vidare med delete
-- jobba vidare med sök
+- sök - is sail och has motor
 - edit
 - sortera
 - images
-- css add form, sök och sort
+
+db.boats.find({_id: ObjectId("5f508721748b22160fb93b2a")})
 
 
 https://www.boat24.com/en/
@@ -12,7 +13,7 @@ https://www.boat24.com/en/
 db.boats.insertMany([{
 		model: 'Marin',
 		year: 2010,
-		price: 134000.77,
+		price: 13400,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -20,7 +21,7 @@ db.boats.insertMany([{
 	{
 		model: 'Aquador',
 		year: 2014,
-		price: 18888000.88,
+		price: 1888800,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -28,7 +29,7 @@ db.boats.insertMany([{
 	{
 		model: 'Nimbus',
 		year: 2099,
-		price: 14555500.99,
+		price: 14000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -36,7 +37,7 @@ db.boats.insertMany([{
 	{
 		model: 'Black Pearl',
 		year: 1890,
-		price: 18888000.89,
+		price: 18000,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -44,7 +45,7 @@ db.boats.insertMany([{
 	{	
 		model: 'Buster',
 		year: 1990,
-		price: 155550.99,
+		price: 155550,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -52,7 +53,7 @@ db.boats.insertMany([{
 	{
 		model: 'Buster X1880',
 		year: 2020,
-		price: 2300000.99,
+		price: 230000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -60,7 +61,7 @@ db.boats.insertMany([{
 	{
 		model: 'Sea Ray',
 		year: 2020,
-		price: 10000000.99,
+		price: 1000000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -68,7 +69,7 @@ db.boats.insertMany([{
 	{
 		model: 'Princess',
 		year: 2022,
-		price: 178889999.99,
+		price: 17888999,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -76,7 +77,7 @@ db.boats.insertMany([{
 	{
 		model: 'X900S',
 		year: 1986,
-		price: 30000088.99,
+		price: 300000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -84,7 +85,7 @@ db.boats.insertMany([{
 	{
 		model: 'EOS ',
 		year: 1997,
-		price: 29660088.99,
+		price: 296600,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -92,7 +93,7 @@ db.boats.insertMany([{
 	{
 		model: 'Nimbus',
 		year: 1999,
-		price: 456600.99,
+		price: 456600,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -100,7 +101,7 @@ db.boats.insertMany([{
 	{
 		model: 'Star craft',
 		year: 2015,
-		price: 123456.99,
+		price: 123456,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -108,7 +109,7 @@ db.boats.insertMany([{
 	{
 		model: 'Maltese Falcon ',
 		year: 2019,
-		price: 190000222.99,
+		price: 19000,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -116,7 +117,7 @@ db.boats.insertMany([{
 	{
 		model: 'Yamaha',
 		year: 1996,
-		price: 16000.99,
+		price: 160000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -124,7 +125,7 @@ db.boats.insertMany([{
 	{
 		model: 'EOS ',
 		year: 1997,
-		price: 29660088.99,
+		price: 296600,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -132,7 +133,7 @@ db.boats.insertMany([{
 	{	
 		model: 'RMS Titanic ',
 		year: 1912,
-		price: 290000.69,
+		price: 290000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -140,7 +141,7 @@ db.boats.insertMany([{
 	{
 		model: 'HMS Beagle',
 		year: 1820,
-		price: 1450000.99,
+		price: 1450000,
 		is_sail: 'Yes',
 		has_motor: 'No',
 		image: ''
@@ -148,7 +149,7 @@ db.boats.insertMany([{
 	{
 		model: 'USS Arizona',
 		year: 1915,
-		price: 1890000.99,
+		price: 1890000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -156,7 +157,7 @@ db.boats.insertMany([{
 	{
 		model: 'Princess',
 		year: 2021,
-		price: 3900000.99,
+		price: 3900000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -164,7 +165,7 @@ db.boats.insertMany([{
 	{
 		model: 'Sea Ray',
 		year: 2013,
-		price: 1780000.99,
+		price: 1780000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''
@@ -172,7 +173,7 @@ db.boats.insertMany([{
 	{
 		model: 'Humber 40',
 		year: 1989,
-		price: 1100000.99,
+		price: 1100000,
 		is_sail: 'No',
 		has_motor: 'Yes',
 		image: ''

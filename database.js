@@ -96,7 +96,6 @@ function search(query, callback){
 		filter.year = {$gt: year}
 	}
 
-	
 	MongoClient.connect(
 		url,
 		{ useUnifiedTopology: true },
@@ -126,7 +125,8 @@ function search(query, callback){
 // TAR INTE BORT RÄTT BÅÅÅT??!
 function deleteBoat(requestBody, callback){
 	console.log('DELETE / deleteBoat')
-	const doc = requestBody;
+	const doc = {_id: new ObjectID(requestBody._id)};
+	console.log('requestBody delete', requestBody)
 
 	MongoClient.connect(
 		url,
