@@ -1,6 +1,8 @@
 const { MongoClient, ObjectID } = require('mongodb')
 
-const url = 'mongodb://localhost:27017';
+/* const url = 'mongodb://localhost:27017'; */
+/* const url = "mongodb+srv://hanna.qo8ls.gcp.mongodb.net/<dbBerras>"  */
+const url = "mongodb+srv://dbBerras:höst2020@hanna.qo8ls.gcp.mongodb.net/dbBerras?retryWrites=true&w=majority"
 const collectionName = 'boats';
 const databaseName = 'boatDB';
 
@@ -153,6 +155,40 @@ function deleteBoat(param, callback){
 
 }
 
+// RESET
+function reset(req, callback) {
+	console.log('POST / reset')
+	// .drop()
+	// insertMany
+
+
+	MongoClient.connect(
+		url,
+		{ useUnifiedTopology: true },
+		async (error, client) => {
+			if(error) {
+				callback('Error! Could not connect!');
+				return; 
+			}
+			const col = client.db(databaseName).collection(collectionName);
+			try {
+				const result = await col.insertMany(req);
+				callback({
+					result: result.result,
+					ops: result.ops
+				})
+
+			} catch(error) {
+				callback('Error! Bad query.');
+
+			} finally {
+				client.close();
+			}
+		}
+	)
+}
+
+
 module.exports = {
-	get, getAllBoats, addBoat, getBoat, search, deleteBoat
+	get, getAllBoats, addBoat, getBoat, search, deleteBoat, reset
 }

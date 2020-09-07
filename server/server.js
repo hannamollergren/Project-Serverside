@@ -1,9 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser');	
 const app = express()
-const port = 1234; // Port number
+/* const port = 1234; */ // Port number
 
-const { getAllBoats, addBoat, getBoat, search, deleteBoat } = require('./database.js');
+const port = process.env.PORT || 1234; 
+
+const { getAllBoats, addBoat, getBoat, search, deleteBoat, reset } = require('./database.js');
 
 // MIDDLEWARE 
 app.use( (req, res, next) => {
@@ -11,7 +13,7 @@ app.use( (req, res, next) => {
     next();
 } )
 
-app.use(express.static(__dirname + '/public')) 
+app.use(express.static(__dirname + '/../public')) 
 
 app.use( bodyParser.urlencoded({ extended: true }) )
 app.use( bodyParser.json() )
@@ -63,6 +65,16 @@ app.delete('/boat/:_id', (req, res) => {
 		console.log('deleteBoat param:', param)
 		res.send(param)
 	})
+})
+
+// RESET
+app.post('/reset', (req, res) => {
+	console.log('RESET / POST')
+	console.log('reset rep.body', req.body)
+	/* reset(req.body, param){
+		res.send(param)
+	} */ 
+	res.send('Reset')
 })
 
 
