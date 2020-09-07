@@ -158,10 +158,7 @@ function deleteBoat(param, callback){
 // RESET
 function reset(req, callback) {
 	console.log('POST / reset')
-	// .drop()
-	// insertMany
-
-
+	
 	MongoClient.connect(
 		url,
 		{ useUnifiedTopology: true },
@@ -170,8 +167,10 @@ function reset(req, callback) {
 				callback('Error! Could not connect!');
 				return; 
 			}
-			const col = client.db(databaseName).collection(collectionName);
+			let reset = client.db(databaseName).collection(collectionName);
 			try {
+				reset.drop();
+				const col = client.db(databaseName).collection(collectionName);
 				const result = await col.insertMany(req);
 				callback({
 					result: result.result,

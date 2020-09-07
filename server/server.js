@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser');	
 const app = express()
-/* const port = 1234; */ // Port number
+/* const port = 1234; // Port number */
 
 const port = process.env.PORT || 1234; 
 
@@ -70,11 +70,10 @@ app.delete('/boat/:_id', (req, res) => {
 // RESET
 app.post('/reset', (req, res) => {
 	console.log('RESET / POST')
-	console.log('reset rep.body', req.body)
-	/* reset(req.body, param){
+	console.log('reset rep.body i server', req.body);
+	reset(req.body, param => {
 		res.send(param)
-	} */ 
-	res.send('Reset')
+	})
 })
 
 
