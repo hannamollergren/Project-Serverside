@@ -1,6 +1,6 @@
 const { MongoClient, ObjectID } = require('mongodb')
 
-const url = "mongodb+srv://dbBerras:höst2020@hanna.qo8ls.gcp.mongodb.net/dbBerras?retryWrites=true&w=majority"
+const url = "mongodb+srv://dbBerras:höst2020@hanna.qo8ls.gcp.mongodb.net/boatDB?retryWrites=true&w=majority"
 const collectionName = 'boats';
 const databaseName = 'boatDB';
 
