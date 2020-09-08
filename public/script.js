@@ -29,7 +29,6 @@ window.addEventListener('load', async () => {
 
 	// ADD BOAT
 	btnAddBoat.addEventListener('click', async () => {
-
 		for (var i = 0, length = inputIsSail.length; i < length; i++) {
     		if (inputIsSail[i].checked) {
         	break;
@@ -113,8 +112,6 @@ window.addEventListener('load', async () => {
 
 	// RESET
 	btnReset.addEventListener('click', async () => {
-		console.log('reset click')
-
 		// POST REQUEST
 		const response = await fetch('/reset', {
 			method: 'POST',
@@ -125,7 +122,6 @@ window.addEventListener('load', async () => {
             body: JSON.stringify(data)
         });
 		const text = await response.json();
-		console.log('reset text', text)
 		getBoats();
 
 	})
