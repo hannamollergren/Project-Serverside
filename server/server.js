@@ -76,8 +76,6 @@ app.post('/reset', (req, res) => {
 	})
 })
 
-
-
 // STARTAR WEBBSERVERN
 app.listen(port, () => {
 	console.log('Web server listening on port ' + port)

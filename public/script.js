@@ -24,7 +24,7 @@ window.addEventListener('load', async () => {
 	// GET BOATS
 	btnGetBoats.addEventListener('click', async () => {
 		displayBoats();
-		getAllBoats();
+		getBoats();
 	})
 
 	// ADD BOAT
@@ -59,7 +59,8 @@ window.addEventListener('load', async () => {
             },
             body: JSON.stringify(input)
         });
-        const text = await response.text();
+		const text = await response.text();
+		getBoats();
 	})
 
 	// TILLBAKA KNAPP
@@ -125,8 +126,96 @@ window.addEventListener('load', async () => {
         });
 		const text = await response.json();
 		console.log('reset text', text)
+		getBoats();
 
 	})
+
+	
+	// GETBOATS 
+	async function getBoats(){
+		const response = await fetch('/boats', { method: 'GET' });
+		const object = await response.json();  
+		container.innerHTML = ""; 
+
+		object.forEach(boat => {
+			let li = document.createElement('li') 
+			li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}`
+			li.setAttribute("class", "productList");
+
+			let img = document.createElement('img'); 
+			img.src = boat.image;
+			
+			if(boat.image === '')
+			{
+				img.src = 'https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-4.jpg';
+			}
+			
+			li.appendChild(img)
+			container.appendChild(li)
+
+			// GET BOAT
+			li.addEventListener('click', async () => {
+				displayProductInfo()
+				
+				
+				const response = await fetch('/boat/' + boat._id, { method: 'GET' });
+				const object = await response.text(); 
+
+				let li = document.createElement('li') 
+
+				li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus minus, quibusdam soluta labore consectetur architecto omnis delectus aspernatur atque minima doloremque, molestiae eveniet animi totam quae incidunt iusto adipisci ex.`
+
+				// DELETE BOAT
+				let btnDelete = document.createElement('button')
+				btnDelete.setAttribute("class", "deleteButton");
+				btnDelete.innerHTML = 'Delete';
+				btnDelete.addEventListener('click', async () => {
+					getBoats();
+					fromProductToBoats();
+
+					// DELETE REQUEST
+					const response = await fetch('/boat/' + boat._id, { method: 'DELETE' });
+					const object = await response.json(); 
+				})
+				
+				productInfo.appendChild(li);
+				productInfo.appendChild(btnDelete)
+			})
+		}) 
+	}
+
+	// DISPLAY
+	function displayBoats() {
+		if(startpageContainer === "none"){
+			startpageContainer.style.display = "block";
+			boatsContainer.style.display = "none";
+		}
+		else{
+			startpageContainer.style.display = "none";
+			boatsContainer.style.display = "block";
+		}
+		
+	}
+	function displayProductInfo() {
+		if(boatsContainer === 'none'){
+			boatsContainer.style.display = "block";
+			productInfo.style.display = 'none';
+		}
+		else{
+			boatsContainer.style.display = "none";
+			productInfo.style.display = "block";
+		}
+	}
+	function fromProductToBoats() {
+		if(productInfo === 'none'){
+			productInfo.style.display = 'block';
+			boatsContainer.style.display = "none";
+		}
+		else{
+			productInfo.style.display = "none";
+			boatsContainer.style.display = "block";
+		}
+	}
 
 	// DATA
 	let data = [{
@@ -297,93 +386,5 @@ window.addEventListener('load', async () => {
 		has_motor: 'Yes',
 		image: "https://www.humberribs.co.uk/images/feature5.jpg"
 	}];
-
-		// GETALLBOATS 
-		async function getAllBoats(){
-			const response = await fetch('/boats', { method: 'GET' });
-			const object = await response.json();  
-			container.innerHTML = ""; 
 	
-			object.forEach(boat => {
-				let li = document.createElement('li') 
-				li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}`
-				li.setAttribute("class", "productList");
-	
-				let img = document.createElement('img'); 
-				img.src = boat.image;
-				
-				if(boat.image === '')
-				{
-					img.src = 'https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-4.jpg';
-				}
-			   
-				li.appendChild(img)
-				container.appendChild(li)
-	
-				// GET BOAT
-				li.addEventListener('click', async () => {
-					displayProductInfo()
-					
-					
-					const response = await fetch('/boat/' + boat._id, { method: 'GET' });
-					const object = await response.text(); 
-	
-					let li = document.createElement('li') 
-	
-					li.innerHTML = `<span>${boat.model}</span><br>${boat.year}<br>$${boat.price}<br><br>Product information<br>Is sail: ${boat.is_sail}<br>Has motor: ${boat.has_motor}<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus minus, quibusdam soluta labore consectetur architecto omnis delectus aspernatur atque minima doloremque, molestiae eveniet animi totam quae incidunt iusto adipisci ex.`
-	
-					// DELETE BOAT
-					let btnDelete = document.createElement('button')
-					btnDelete.setAttribute("class", "deleteButton");
-					btnDelete.innerHTML = 'Delete';
-					btnDelete.addEventListener('click', async () => {
-						getAllBoats();
-						fromProductToBoats();
-	
-						// DELETE REQUEST
-						const response = await fetch('/boat/' + boat._id, { method: 'DELETE' });
-						const object = await response.json(); 
-					})
-					
-					productInfo.appendChild(li);
-					productInfo.appendChild(btnDelete)
-				})
-			}) 
-		}
-
-	// DISPLAY
-	function displayBoats() {
-		if(startpageContainer === "none"){
-			startpageContainer.style.display = "block";
-			boatsContainer.style.display = "none";
-		}
-		else{
-			startpageContainer.style.display = "none";
-			boatsContainer.style.display = "block";
-		}
-		
-	}
-	function displayProductInfo() {
-		if(boatsContainer === 'none'){
-			boatsContainer.style.display = "block";
-			productInfo.style.display = 'none';
-		}
-		else{
-			boatsContainer.style.display = "none";
-			productInfo.style.display = "block";
-		}
-	}
-	function fromProductToBoats() {
-		if(productInfo === 'none'){
-			productInfo.style.display = 'block';
-			boatsContainer.style.display = "none";
-		}
-		else{
-			productInfo.style.display = "none";
-			boatsContainer.style.display = "block";
-		}
-	}
-
-
-
 }); // load

@@ -1,7 +1,14 @@
 Här är min inlämning i kursen Serverside programmering.
 Länk till repot på GitHub: https://github.com/hannamollergren/Project-Serverside
-Jag har implementerat följande level ups: 1, 3, 5, 7, (8).
+Jag har implementerat följande level ups: 1, 2, 3, 5, 7, 8.
 Webbservern är publicerad här: https://berrasboatshop.herokuapp.com/
+
+
+
+
+
+
+
 db.boats.deleteMany({})
 db.boats.insertMany([{
 		model: 'Marin',

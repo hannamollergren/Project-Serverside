@@ -1,7 +1,5 @@
 const { MongoClient, ObjectID } = require('mongodb')
 
-/* const url = 'mongodb://localhost:27017'; */
-/* const url = "mongodb+srv://hanna.qo8ls.gcp.mongodb.net/<dbBerras>"  */
 const url = "mongodb+srv://dbBerras:höst2020@hanna.qo8ls.gcp.mongodb.net/dbBerras?retryWrites=true&w=majority"
 const collectionName = 'boats';
 const databaseName = 'boatDB';
@@ -158,7 +156,7 @@ function deleteBoat(param, callback){
 // RESET
 function reset(req, callback) {
 	console.log('POST / reset')
-	
+
 	MongoClient.connect(
 		url,
 		{ useUnifiedTopology: true },
@@ -167,9 +165,9 @@ function reset(req, callback) {
 				callback('Error! Could not connect!');
 				return; 
 			}
-			let reset = client.db(databaseName).collection(collectionName);
+			client.db(databaseName).collection(collectionName).drop();
 			try {
-				reset.drop();
+				/* reset.drop(); */
 				const col = client.db(databaseName).collection(collectionName);
 				const result = await col.insertMany(req);
 				callback({

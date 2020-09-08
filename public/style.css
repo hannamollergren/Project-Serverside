@@ -16,6 +16,13 @@ header{
 .header-container{ 
 	background-color: #273858;
 	height: 4em;
+	display: flex;
+	justify-content: flex-end;
+}
+#btn-reset{
+	height: 0;
+	padding: 1em;
+	background-color: transparent;
 }
 footer{
 	margin-top: 3em;
